@@ -12,11 +12,12 @@
 import tkinter as tk
 from tkinter import ttk
 import itertools
+from tkinter.messagebox import showerror
 
 win = tk.Tk()
 h = 1200
 w = 720
-
+"""ПРЕФИКС ЭТО КАТЕГОРИЯ ТОВАРА(ДЕШЕВЫЙ/ДОРОГОЙ) ID ЭТО ИДЕКС ТОВАРА ,COST ЦЕНА"""
 class Tovar_premium:
     def __init__(self,prefix,id,cost):
         self.prefix = prefix
@@ -28,19 +29,23 @@ class Tovar_lowcost:
         self.prefix = prefix
         self.id = id
         self.cost = cost
-
+"""ФУНКЦИЯ ОЧИСТКИ ЭКРАНА"""
 def delete_editor():
 
     editor.delete('1.0','end')
 
 
 def combination():
-
+    """ПОЛУЧАЕМ ЗАНЧЕНИЯ ОТ ЮЗЕРА"""
     t = int(entryT.get())
     n = int(entryN.get())
     k = int(entryK.get())
 
     y = t
+    """ПРЕДУПРЕЖДЕНИЕ"""
+    if k >= 20 and n>=7:
+        tk.messagebox.showinfo(title="Информация", message="Приданных значениях программа может долго выполнять запрос")
+
     premiumScore = 0
     costScore = 0
     spisok = []
@@ -247,5 +252,6 @@ startEngine.place(x=40,y=480)
 clean = ttk.Button(win,text = "Сброс",cursor="pirate",command=delete_editor)
 clean.place(x=40,y=540)
 
+"""ВЫВОД НА ЭКРАН"""
 win.config(bg='#381c1a')
 win.mainloop()
